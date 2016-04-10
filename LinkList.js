@@ -1,3 +1,5 @@
+'use strict';
+
 function Node(data) {
 	this.data = data;
 	this.next = null;
@@ -23,18 +25,17 @@ LinkedList.prototype = {
 				data: data,
 				next: null
 			}
-
 		*/
 
 		//special case: when list is empty
 
 		var current = this._head;
 
-		if (current == null) {
+		if (current === null) {
 			this._head = node;
 		}
 		else {
-			while (current.next != null) {
+			while (current.next !== null) {
 				current = current.next;
 			}
 			current.next = node;
@@ -65,13 +66,31 @@ LinkedList.prototype = {
 	},
 
 	/*
-		inxex: zero based index of the item which is to be removed.
+		index: zero based index of the item which is to be removed.
 	*/
 
 	remove: function(index) {
-		var current = this._head,
-			previous = null;
+		if (index > -1 && index < this._length) {
+			var current = this._head,
+				previous = null,
+				i = 0;
 
-			
+			if (index === 0){
+				_head = _head.next;
+			}
+			else {
+				while (i++ < index && current.next !== null) {
+					previous = current;
+					current = current.next;
+				}
+				previous.next = current.next;
+			}
+
+			this._length--;
+			return current.data;
+		}
+		else {
+			return null;
+		}
 	}
 }
