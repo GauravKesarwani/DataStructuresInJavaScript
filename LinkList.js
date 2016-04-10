@@ -1,111 +1,111 @@
 'use strict';
 
 function Node(data) {
-	this.data = data;
-	this.next = null;
+  this.data = data;
+  this.next = null;
 }
 
 function LinkedList() {
-	this._length = 0;
-	this._head = null;
+  this._length = 0;
+  this._head = null;
 }
 
 LinkedList.prototype = {
-	//restore constructor
-	constructor: LinkedList,
+  //restore constructor
+  constructor: LinkedList,
 
-	//insert a node at the end of Link List
-	insertAtLast: function(data) {
-		Node node = new Node(data);
+  //insert a node at the end of Link List
+  insertAtLast: function(data) {
+    Node node = new Node(data);
 
-		/* 
-			Another way to initialize node:
+    /* 
+      Another way to initialize node:
 
-			var node = {
-				data: data,
-				next: null
-			}
-		*/
+      var node = {
+        data: data,
+        next: null
+      }
+    */
 
-		//special case: when list is empty
+    //special case: when list is empty
 
-		var current = this._head;
+    var current = this._head;
 
-		if (current === null) {
-			this._head = node;
-		}
-		else {
-			while (current.next) {
-				current = current.next;
-			}
-			current.next = node;
-			node.next = null;
-		}
+    if (current === null) {
+      this._head = node;
+    }
+    else {
+      while (current.next) {
+        current = current.next;
+      }
+      current.next = node;
+      node.next = null;
+    }
 
-		this._length++;
-	},
+    this._length++;
+  },
 
-	/* search an item at a given position
-		 index: zero based index of the item whose value should be returned.
-	*/
-	searchAtPosition: function(index) {
+  /* search an item at a given position
+     index: zero based index of the item whose value should be returned.
+  */
+  searchAtPosition: function(index) {
 
-		// check out of bound values 
-		if (index > -1 && index < this._length) {
-			var current = this._head;
+    // check out of bound values 
+    if (index > -1 && index < this._length) {
+      var current = this._head;
 
-			while(i++ < index) {
-				current = current.next;
-			}
+      while(i++ < index) {
+        current = current.next;
+      }
 
-			return current.data;
-		}
-		else {
-			return null;
-		}
-	},
+      return current.data;
+    }
+    else {
+      return null;
+    }
+  },
 
-	/*
-		index: zero based index of the item which is to be removed.
-	*/
+  /*
+    index: zero based index of the item which is to be removed.
+  */
 
-	remove: function(index) {
-		if (index > -1 && index < this._length) {
-			var current = this._head,
-				previous = null,
-				i = 0;
+  remove: function(index) {
+    if (index > -1 && index < this._length) {
+      var current = this._head,
+        previous = null,
+        i = 0;
 
-			if (index === 0){
-				_head = _head.next;
-			}
-			else {
-				while (i++ < index && current.next !== null) {
-					previous = current;
-					current = current.next;
-				}
-				previous.next = current.next;
-			}
+      if (index === 0){
+        _head = _head.next;
+      }
+      else {
+        while (i++ < index && current.next !== null) {
+          previous = current;
+          current = current.next;
+        }
+        previous.next = current.next;
+      }
 
-			this._length--;
-			return current.data;
-		}
-		else {
-			return null;
-		}
-	},
+      this._length--;
+      return current.data;
+    }
+    else {
+      return null;
+    }
+  },
 
-	toArray: function() {
-		var result = [],
-			current = _head;
+  toArray: function() {
+    var result = [],
+      current = _head;
 
-		while(current) {
-			result.push(current.data);
-			current = current.next;
-		}	
-		return result.toArray();
-	},
+    while(current) {
+      result.push(current.data);
+      current = current.next;
+    } 
+    return result.toArray();
+  },
 
-	toString: function() {
-		return this.toArray().toString();
-	}
+  toString: function() {
+    return this.toArray().toString();
+  }
 }
