@@ -35,7 +35,7 @@ LinkedList.prototype = {
 			this._head = node;
 		}
 		else {
-			while (current.next !== null) {
+			while (current.next) {
 				current = current.next;
 			}
 			current.next = node;
@@ -92,5 +92,20 @@ LinkedList.prototype = {
 		else {
 			return null;
 		}
+	},
+
+	toArray: function() {
+		var result = [],
+			current = _head;
+
+		while(current) {
+			result.push(current.data);
+			current = current.next;
+		}	
+		return result.toArray();
+	},
+
+	toString: function() {
+		return this.toArray().toString();
 	}
 }
