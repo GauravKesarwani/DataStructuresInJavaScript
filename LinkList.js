@@ -94,6 +94,11 @@ LinkedList.prototype = {
     }
   },
 
+  removeDuplicates: function() {
+    
+
+  },
+
   toArray: function() {
     var result = [],
       current = _head;
